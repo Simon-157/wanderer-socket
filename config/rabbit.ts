@@ -7,7 +7,7 @@ let channel: Channel | null = null;
 
 async function connect(): Promise<void> {
     try {
-        connection = await amqp.connect('amqp://localhost');
+        connection = await amqp.connect('amqp://172.166.224.130');
         channel = await connection.createChannel();
     } catch (error) {
         console.error('Error connecting to RabbitMQ:', error);
