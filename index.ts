@@ -10,7 +10,7 @@ import { publishVideoMessage } from "./queues/videoQueue";
 
 const app = express();
 app.use(cors({
-  origin: "*", // Allow all origins
+  origin: "http://localhost:3000", // Allow all origins
   methods: ["GET", "POST"], 
   allowedHeaders: ["Content-Type", "Authorization"] 
 }));
@@ -18,7 +18,7 @@ const server = http.createServer(app);
 
 const io = new SocketIOServer(server, {
    cors: {
-    origin: "*",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     optionsSuccessStatus: 200
