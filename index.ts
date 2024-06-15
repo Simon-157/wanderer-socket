@@ -8,11 +8,19 @@ import { logger } from "./config/logger";
 import { publishVideoMessage } from "./queues/videoQueue";
 
 const app = express();
+app.use(cors({
+  origin: "*", // Allow all origins or specify specific origins if needed
+  methods: ["GET", "POST"], // Specify allowed methods
+  allowedHeaders: ["Content-Type", "Authorization"] // Specify allowed headers
+}));
 const server = http.createServer(app);
+
 const io = new SocketIOServer(server, {
-  cors: {
+   cors: {
     origin: "*",
-    optionsSuccessStatus: 200,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200
   },
 });
 
