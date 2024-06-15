@@ -1,5 +1,6 @@
 import express from "express";
 import http from "http";
+import cors from "cors";
 import { Server as SocketIOServer, Socket } from "socket.io";
 import { storage } from "./config/firebase";
 import { ref, uploadBytes, uploadString } from "firebase/storage";
@@ -9,9 +10,9 @@ import { publishVideoMessage } from "./queues/videoQueue";
 
 const app = express();
 app.use(cors({
-  origin: "*", // Allow all origins or specify specific origins if needed
-  methods: ["GET", "POST"], // Specify allowed methods
-  allowedHeaders: ["Content-Type", "Authorization"] // Specify allowed headers
+  origin: "*", // Allow all origins
+  methods: ["GET", "POST"], 
+  allowedHeaders: ["Content-Type", "Authorization"] 
 }));
 const server = http.createServer(app);
 
