@@ -1,4 +1,3 @@
-// message-queue/rabbitmq.ts
 import * as amqp from 'amqplib';
 import { Channel, Connection } from 'amqplib';
 
@@ -7,8 +6,10 @@ let channel: Channel | null = null;
 
 async function connect(): Promise<void> {
     try {
-        connection = await amqp.connect('amqp://172.166.224.130');
+        const amqpUrl = 'amqp://wanderer:wanderer@172.166.224.130';
+        connection = await amqp.connect(amqpUrl);
         channel = await connection.createChannel();
+        console.log('Connected to RabbitMQ');
     } catch (error) {
         console.error('Error connecting to RabbitMQ:', error);
         throw error;
@@ -20,3 +21,4 @@ function getChannel(): Channel | null {
 }
 
 export { connect, getChannel };
+
